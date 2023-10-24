@@ -6,7 +6,7 @@ const port = 3000;
 const chechBody = "OK";
 
 app.get("/check", async (req, res) => {
-	res.status(200).json({ status: chechBody });
+	return res.status(200).json({ status: chechBody });
 });
 
 const server = app.listen(port, () => {
