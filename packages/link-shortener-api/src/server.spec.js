@@ -1,14 +1,20 @@
-import request from "supertest";
-import {app, server} from "./server";
+import { app, server } from "./server";
 
 describe("check endpoint", () => {
 	afterAll(() => {
 		server.close();
 	});
-  
-	it("should return OK", async () => {
-		const response = await request(app).get("/check");
-		expect(response.status).toBe(200);
-		expect(response.body.status).toBe("OK");
+
+	it("should return OK", () => {
+		const mockRequest = { method: "GET", url: "/check" };
+		const mockResponse = {
+			status: jest.fn().mockReturnThis(),
+			json: jest.fn(),
+		};
+
+		app(mockRequest, mockResponse);
+
+		expect(mockResponse.status).toHaveBeenCalledWith(200);
+		expect(mockResponse.json).toHaveBeenCalledWith({ status: "OK" });
 	});
 });
