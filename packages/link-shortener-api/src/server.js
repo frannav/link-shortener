@@ -5,10 +5,12 @@ const port = 3000;
 
 const chechBody = "OK";
 
-app.get("/check", (req, res) => {
+app.get("/check", async (req, res) => {
 	return res.status(200).json({ status: chechBody });
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log(`La aplicación está escuchando en el puerto ${port}`);
 });
+
+export { app, server };

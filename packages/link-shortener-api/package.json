@@ -1,0 +1,34 @@
+{
+    "name": "link-shortener-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --config ../../jest.config.mjs",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "start": "node ./src/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/frannav/link-shortener.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/frannav/link-shortener/issues"
+    },
+    "homepage": "https://github.com/frannav/link-shortener#readme",
+    "dependencies": {
+        "express": "4.18.2"
+    },
+    "devDependencies": {
+        "supertest": "^6.3.3"
+    },
+    "engines": {
+        "node": ">=20",
+        "pnpm": ">=7"
+      }
+}
