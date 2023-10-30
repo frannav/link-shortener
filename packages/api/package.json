@@ -1,12 +1,13 @@
 {
-    "name": "link-shortener-api",
+    "name": "api",
     "version": "1.0.0",
     "description": "URL shortener API",
     "main": "server.js",
     "type": "module",
     "scripts": {
-        "test": "jest",
         "lint": "eslint .",
+        "lint:fix": "eslint --fix",
+        "test": "jest",
         "start": "node ./src/server.js"
     },
     "repository": {
