@@ -60,7 +60,6 @@ jobs:
       matrix:
         node: ["18.18.2"]
         # projectName: ${{fromJson(needs.get-affected.outputs.test-unit)}}
-        projectName: api
     env:
       NODE: ${{ matrix.node }}
     steps:
@@ -80,7 +79,8 @@ jobs:
         run: pnpm install
       # Run test:unit script in the affected project
       - name: Test unit
-        run: pnpm nx lint ${{ matrix.projectName }}
+        # run: pnpm nx lint ${{ matrix.projectName }}
+        run: pnpm nx lint api
   test-unit:
     runs-on: ubuntu-latest
     # todo implement get-affeted
@@ -94,7 +94,6 @@ jobs:
       matrix:
         node: ["18.18.2"]
         # projectName: ${{fromJson(needs.get-affected.outputs.test-unit)}}
-        projectName: api
     env:
       NODE: ${{ matrix.node }}
     steps:
@@ -114,4 +113,5 @@ jobs:
         run: pnpm install
       # Run test:unit script in the affected project
       - name: Test unit
-        run: pnpm nx test:unit ${{ matrix.projectName }}
+        # run: pnpm nx test:unit ${{ matrix.projectName }}
+        run: pnpm nx test api
