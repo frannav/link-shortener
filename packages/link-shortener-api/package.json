@@ -1,13 +1,12 @@
 {
     "name": "link-shortener-api",
     "version": "1.0.0",
-    "description": "",
+    "description": "URL shortener API",
     "main": "server.js",
     "type": "module",
     "scripts": {
-        "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --config ../../jest.config.mjs",
+        "test": "jest",
         "lint": "eslint .",
-        "lint:fix": "eslint --fix .",
         "start": "node ./src/server.js"
     },
     "repository": {
@@ -24,11 +23,8 @@
     "dependencies": {
         "express": "4.18.2"
     },
-    "devDependencies": {
-        "supertest": "^6.3.3"
-    },
     "engines": {
-        "node": ">=20",
+        "node": ">=18",
         "pnpm": ">=7"
       }
 }

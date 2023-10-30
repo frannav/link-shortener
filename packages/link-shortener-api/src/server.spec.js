@@ -1,14 +1,17 @@
-import request from "supertest";
-import {app, server} from "./server";
+const request = require("supertest");
+const { app, server } = require("./server");
 
-describe("check endpoint", () => {
+describe("GET /check", () => {
 	afterAll(() => {
 		server.close();
 	});
-  
-	it("should return OK", async () => {
-		const response = await request(app).get("/check");
-		expect(response.status).toBe(200);
-		expect(response.body.status).toBe("OK");
+
+	it("debería devolver OK", async () => {
+		const res = await request(app)
+			.get("/check")
+			.expect("Content-Type", /json/)
+			.expect(200);
+    
+		expect(res.body.status).toEqual("OK");
 	});
 });
