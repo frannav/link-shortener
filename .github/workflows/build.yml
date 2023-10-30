@@ -60,7 +60,7 @@ jobs:
       matrix:
         node: ["18.18.2"]
         # projectName: ${{fromJson(needs.get-affected.outputs.test-unit)}}
-        projectName: "api"
+        projectName: api
     env:
       NODE: ${{ matrix.node }}
     steps:
@@ -94,7 +94,7 @@ jobs:
       matrix:
         node: ["18.18.2"]
         # projectName: ${{fromJson(needs.get-affected.outputs.test-unit)}}
-        projectName: "api"
+        projectName: api
     env:
       NODE: ${{ matrix.node }}
     steps:
