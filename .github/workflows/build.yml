@@ -86,7 +86,7 @@ jobs:
     # todo implement get-affeted
     # needs: [get-affected]
     # Skip the job if there are not affected projects containing unit tests
-    if:  ${{ fromJson(needs.get-affected.outputs.test-unit)[0] }}
+    # if:  ${{ fromJson(needs.get-affected.outputs.test-unit)[0] }}
     strategy:
       # Run in parallel
       max-parallel: 4
