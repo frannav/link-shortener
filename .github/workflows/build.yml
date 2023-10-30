@@ -30,3 +30,92 @@ jobs:
       # Export the branch names as output to be able to use it in other jobs
       base-branch-name: ${{ steps.get-base-branch-name.outputs.branch }}
       branch-name: ${{ steps.branch-name.outputs.current_branch }}
+# get-affected:
+#     steps:
+#       # ...previous get-affected steps
+#       - name: Get affected
+#         id: get-projects-arrays
+#         # When not in a PR and the current branch is main, pass --all flag. Otherwise pass the base branch
+#         run: |
+#             if [[ "${{github.event.pull_request.base.ref}}" == "" && "${{needs.branch-info.outputs.branch-name}}" == "main" ]]; then
+#               echo "::set-output name=test-unit::$(node scripts/print-affected-array.js test:unit --all)"
+#               echo "::set-output name=test-e2e::$(node scripts/print-affected-array.js test:e2e --all)"
+#             else
+#               echo "::set-output name=test-unit::$(node scripts/print-affected-array.js test:unit origin/${{needs.branch-info.outputs.base-branch-name}})"
+#               echo "::set-output name=test-e2e::$(node scripts/print-affected-array.js test:e2e origin/${{needs.branch-info.outputs.base-branch-name}})"
+#             fi
+#     outputs:
+#       test-unit: ${{ steps.get-projects-arrays.outputs.test-unit }}
+#       test-e2e: ${{ steps.get-projects-arrays.outputs.test-e2e }}
+jobs:
+  # ...previous jobs
+  lint:
+    runs-on: ubuntu-latest
+    # todo implement get-affeted
+    # needs: [get-affected]
+    # Skip the job if there are not affected projects containing unit tests
+    # if:  ${{ fromJson(needs.get-affected.outputs.test-unit)[0] }}
+    strategy:
+      # Run in parallel
+      max-parallel: 4
+      # One job for each different project and node version
+      matrix:
+        node: ["18.18.2"]
+        # projectName: ${{fromJson(needs.get-affected.outputs.test-unit)}}
+        projectName: "api"
+    env:
+      NODE: ${{ matrix.node }}
+    steps:
+      # Checkout and setup environment
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
+        with:
+          version: "7.x"
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      # Run test:unit script in the affected project
+      - name: Test unit
+        run: pnpm nx lint ${{ matrix.projectName }}
+jobs:
+  # ...previous jobs
+  test-unit:
+    runs-on: ubuntu-latest
+    # todo implement get-affeted
+    # needs: [get-affected]
+    # Skip the job if there are not affected projects containing unit tests
+    if:  ${{ fromJson(needs.get-affected.outputs.test-unit)[0] }}
+    strategy:
+      # Run in parallel
+      max-parallel: 4
+      # One job for each different project and node version
+      matrix:
+        node: ["18.18.2"]
+        # projectName: ${{fromJson(needs.get-affected.outputs.test-unit)}}
+        projectName: "api"
+    env:
+      NODE: ${{ matrix.node }}
+    steps:
+      # Checkout and setup environment
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
+        with:
+          version: "7.x"
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      # Run test:unit script in the affected project
+      - name: Test unit
+        run: pnpm nx test:unit ${{ matrix.projectName }}
