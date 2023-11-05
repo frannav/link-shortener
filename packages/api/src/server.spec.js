@@ -6,7 +6,7 @@ describe("GET /check", () => {
 		server.close();
 	});
 
-	it("debería devolver OK", async () => {
+	it("Should return OK", async () => {
 		const res = await request(app)
 			.get("/check")
 			.expect("Content-Type", /json/)
