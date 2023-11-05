@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "URL shortener API",
     "main": "server.js",
-    "type": "module",
     "scripts": {
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
