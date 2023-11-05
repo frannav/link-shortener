@@ -1,14 +1,14 @@
 {
   "name": "link-shortener",
   "version": "1.0.0",
-  "description": "",
+  "description": "URL shortener monorepo",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "nx": "nx",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "start": "node ./packages/link-shortener-api/src/server.js"
+    "lint:fix": "eslint --fix",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,17 +22,14 @@
   },
   "homepage": "https://github.com/frannav/link-shortener#readme",
   "devDependencies": {
-    "@types/jest": "^29.5.6",
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "jest": "^29.7.0"
-  },
-  "dependencies": {
-    "express": "4.18.2"
+    "@types/jest": "29.5.6",
+    "eslint": "8.52.0",
+    "jest": "29.7.0",
+    "supertest": "6.3.3",
+    "nx": "17.0.2"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=18",
     "pnpm": ">=7"
   }
 }

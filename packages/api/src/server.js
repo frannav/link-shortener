@@ -10,7 +10,7 @@ app.get("/check", async (req, res) => {
 });
 
 const server = app.listen(port, () => {
-	console.log(`La aplicación está escuchando en el puerto ${port}`);
+	console.log(`Server listening on port ${port}`);
 });
 
 module.exports = { app, server };
