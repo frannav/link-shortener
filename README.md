@@ -20,6 +20,7 @@ We can run scripts from the root of the project using:  `pnpm nx run <script> <p
 - `packages/database` is a local mongodb database that can be used for development. It is not intended to be used in production.
 - Up local mongo database: `docker compose up -d`
 
+[ ⚠️ TO DO] - make a script to populate the database with test data
 *Populate local mongo database:*
 - docker ps -a (find the container id for the database)
 - docker exec -it <container id> bash
