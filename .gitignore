@@ -9,7 +9,7 @@ lerna-debug.log*
 .vscode
 .DS_Store
 .nx
-
+packages/json-database/docker/data
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Runtime data
